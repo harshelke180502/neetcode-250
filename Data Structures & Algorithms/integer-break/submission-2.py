@@ -1,0 +1,29 @@
+class Solution:
+    def integerBreak(self, n: int) -> int:
+        # dp=[0]*(n+1)
+        # dp[0]=1
+        # for num in range(2,n+1):
+        #     if num==n:
+        #         dp[num]=0
+        #     else:
+        #         dp[num]=num
+        #     for i in range(1,num):
+        #         dp[num]=max(max(i,dp[i]),dp[num],dp[i]*dp[num-i])
+        # return dp[n]
+        memo={}
+        def dfs(total):
+            if total in memo:
+                return memo[total]
+            if total==n:
+                res=0
+            else:
+                res=total
+            for i in range(1,total):
+                value=dfs(i)*dfs(total-i)
+                res=max(res,value)
+            memo[total]=res
+            return res
+
+        return dfs(n)
+
+        
