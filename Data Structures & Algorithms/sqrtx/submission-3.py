@@ -1,0 +1,12 @@
+class Solution:
+    def mySqrt(self, x: int) -> int:
+        l,r=0,x
+        while l<r:
+            m=l+(r-l)//2
+            curr=m*m
+            if curr>=x:
+                r=m
+            else:
+                l=m+1
+            print(l,r)
+        return l if (l*l==x) else l-1 
